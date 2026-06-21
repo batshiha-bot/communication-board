@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>לוח תקשורת אינטראקטיבי - שייק 🥤</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f6fa;
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+            font-size: 1.8rem;
+        }
+        p {
+            color: #7f8c8d;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        /* מבנה הלוח - 5 עמודות */
+        .board-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            width: 100%;
+            max-width: 900px;
+        }
+        /* עיצוב כללי למשבצת */
+        .cell {
+            border: 2px solid #bdc3c7;
+            border-radius: 12px;
+            padding: 15px 5px;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.05);
+            transition: transform 0.1s, box-shadow 0.1s;
+            user-select: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 70px;
+        }
+        .cell:active {
+            transform: scale(0.95);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        /* כפתור שייק ענק במרכז השורה הראשונה (תופס 3 עמודות) */
+        .cell-shake {
+            grid-column: span 3;
+            background-color: #40e0d0 !important; /* טורקיז מודגש */
+            font-size: 2rem;
+            color: #333;
+        }
+        /* צבעי הקטגוריות לפי הלוח שלך */
+        .category-pink { background-color: #fbc7f7; color: #333; }   /* תיאורים ורגשות */
+        .category-yellow { background-color: #fcebb6; color: #333; } /* מצרכים וכלים */
+        .category-green { background-color: #a8e6cf; color: #333; }  /* פעלים */
+        .category-white { background-color: #ffffff; color: #333; }  /* זמנים, שאלות וכינויי גוף */
+    </style>
+</head>
+<body>
+
+    <h1>לוח תקשורת: מכינים שייק! 🍓🥤</h1>
+    <p>לחצו על כל משבצת כדי לשמוע את המילה</p>
+
+    <div class="board-grid">
+        
+        <div class="cell category-pink" onclick="speak('טעים')">טעים 😋</div>
+        <div class="cell category-yellow" onclick="speak('תותים')">תותים 🍓</div>
+        <div class="cell cell-shake" onclick="speak('שייק')">שייק 🥤 Blender</div>
+        <div class="cell category-white" onclick="speak('לא')">לא ❌</div>
+        <div class="cell category-white" onclick="speak('אני')">אני 👤</div>
+
+        <div class="cell category-pink" onclick="speak('לא טעים')">לא טעים ☹️</div>
+        <div class="cell category-yellow" onclick="speak('סוכר')">סוכר 🥣</div>
+        <div class="cell category-white" onclick="speak('קודם')">קודם ⏰</div>
+        <div class="cell category-white" onclick="speak('אני רוצה')">אני רוצה 👋</div>
+
+        <div class="cell category-pink" onclick="speak('חם')">חם ☀️</div>
+        <div class="cell category-yellow" onclick="speak('חלב')">חלב 🥛</div>
+        <div class="cell category-green" onclick="speak('לפתוח')">לפתוח 🍾</div>
+        <div class="cell category-green" onclick="speak('להוסיף')">להוסיף 🥣</div>
+        <div class="cell category-white" onclick="speak('עכשיו')">עכשיו ⏱️</div>
+        <div class="cell category-white" onclick="speak('אני לא רוצה')">אני לא רוצה 🙅‍♂️</div>
+
+        <div class="cell category-pink" onclick="speak('קר')">קר ❄️</div>
+        <div class="cell category-yellow" onclick="speak('קוביות קרח')">קוביות קרח 🧊</div>
+        <div class="cell category-green" style="grid-row: span 1;" onclick="speak('לטחון')">לטחון 🌪️</div>
+        <div class="cell category-white" onclick="speak('אחר כך')">אחר כך ⏱️</div>
+        <div class="cell category-white" onclick="speak('משהו אחר')">משהו אחר 📊</div>
+
+        <div class="cell category-pink" onclick="speak('הרבה')">הרבה 🧺</div>
+        <div class="cell category-yellow" onclick="speak('כוס')">כוס 🥛</div>
+        <div class="cell category-green" onclick="speak('למזוג')">למזוג 🫗</div>
+        <div class="cell category-white" onclick="speak('לבד')">לבד 🧘</div>
+        <div class="cell category-white" onclick="speak('לעזור לי')">לעזור לי 🤝</div>
+
+        <div class="cell category-pink" onclick="speak('קצת')">קצת 🤏</div>
+        <div class="cell category-yellow" onclick="speak('כף')">כף 🥄</div>
+        <div class="cell category-green" onclick="speak('לערבב')">לערבב 🥄</div>
+        <div class="cell category-white" onclick="speak('די')">די 🛑</div>
+        <div class="cell category-white" onclick="speak('איפה')">איפה ❓</div>
+
+        <div class="cell category-pink" onclick="speak('מתוק')">מתוק 🍬</div>
+        <div class="cell category-yellow" onclick="speak('בלנדר')">בלנדר 🌪️</div>
+        <div class="cell category-green" onclick="speak('לשתות')">לשתות 🥤</div>
+        <div class="cell category-white" onclick="speak('עוד')">עוד 🔄</div>
+        <div class="cell category-white" style="visibility: hidden;"></div> </div>
+
+    <script>
+        function speak(text) {
+            // ביטול הקראות קודמות שעדיין רצות כדי שלא ייווצר עומס
+            window.speechSynthesis.cancel();
+            
+            let utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'he-IL'; // מגדיר הקראה בעברית
+            utterance.rate = 0.9;     // קצב דיבור מעט איטי וברור יותר עבור ילדים
+            window.speechSynthesis.speak(utterance);
+        }
+    </script>
+
+</body>
+</html>
